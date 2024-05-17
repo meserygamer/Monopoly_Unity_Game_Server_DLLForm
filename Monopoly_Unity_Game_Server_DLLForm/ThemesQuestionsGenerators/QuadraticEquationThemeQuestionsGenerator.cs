@@ -1,19 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Monopoly_Unity_Game_Server.Model;
+﻿using Monopoly_Unity_Game_Server.Model;
 using Monopoly_Unity_Game_Server.Model.QuestionFactories;
 
-namespace Monopoly_Unity_Game_Server.Controllers
+namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
 {
-    [Route("QuadraticEquation/")]
-    public class QuadraticEquationController : Controller
+    public class QuadraticEquationThemeQuestionsGenerator
     {
-        public QuadraticEquationController(QuadraticEquationWithA1QuestionFactory quadraticEquationWithA1QuestionFactory,
-            QuadraticEquationWithB0_C0Factory quadraticEquationWithB0_C0Factory,
-            QuadraticEquationWithANot0And1Factory quadraticEquationWithANot0And1Factory) 
+        public QuadraticEquationThemeQuestionsGenerator() 
         {
-            _quadraticEquationWithA1QuestionFactory = quadraticEquationWithA1QuestionFactory;
-            _quadraticEquationWithB0_C0Factory = quadraticEquationWithB0_C0Factory;
-            _quadraticEquationWithANot0And1Factory = quadraticEquationWithANot0And1Factory;
+            Random random = new Random();
+            _quadraticEquationWithA1QuestionFactory = new QuadraticEquationWithA1QuestionFactory(random);
+            _quadraticEquationWithB0_C0Factory = new QuadraticEquationWithB0_C0Factory(random);
+            _quadraticEquationWithANot0And1Factory = new QuadraticEquationWithANot0And1Factory(random);
         }
 
 
@@ -22,24 +19,18 @@ namespace Monopoly_Unity_Game_Server.Controllers
         private QuadraticEquationWithANot0And1Factory _quadraticEquationWithANot0And1Factory;
 
 
-        [HttpGet]
-        [Route("QuadraticEquationWithA1QuestionFactory")]
         public GameSquareExample GenerateQuadraticEquationWithA1Question()
         {
             Question question = _quadraticEquationWithA1QuestionFactory.GetQuestion();
             return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
         }
 
-        [HttpGet]
-        [Route("QuadraticEquationWithB0_orC0QuestionFactory")]
         public GameSquareExample QuadraticEquationWithB0_orC0Question()
         {
             Question question = _quadraticEquationWithB0_C0Factory.GetQuestion();
             return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
         }
 
-        [HttpGet]
-        [Route("QuadraticEquationWithANot0And1Factory")]
         public GameSquareExample QuadraticEquationWithANot0And1Question()
         {
             Question question = _quadraticEquationWithANot0And1Factory.GetQuestion();
@@ -47,5 +38,3 @@ namespace Monopoly_Unity_Game_Server.Controllers
         }
     }
 }
-
-

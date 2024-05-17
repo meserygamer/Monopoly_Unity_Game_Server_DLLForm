@@ -1,17 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Monopoly_Unity_Game_Server.Model;
+﻿using Monopoly_Unity_Game_Server.Model;
 using Monopoly_Unity_Game_Server.Model.QuestionFactories.RootQuestion;
 
-namespace Monopoly_Unity_Game_Server.Controllers
+namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
 {
-    [Controller]
-    [Route("RootQuestion/")]
-    public class RootQuestionController : Controller
+    public class RootQuestionThemeQuestionsGenerator
     {
-        public RootQuestionController(CalculateRoot2And3Factory calculateRoot2And3Factory, PropertiesOfRootFactory propertiesOfRootFactory)
+        public RootQuestionThemeQuestionsGenerator()
         {
-            _calculateRoot2And3Factory = calculateRoot2And3Factory;
-            _propertiesOfRootFactory = propertiesOfRootFactory;
+            Random random = new Random();
+            _calculateRoot2And3Factory = new CalculateRoot2And3Factory(random);
+            _propertiesOfRootFactory = new PropertiesOfRootFactory(random);
         }
 
 
@@ -19,24 +17,18 @@ namespace Monopoly_Unity_Game_Server.Controllers
         private PropertiesOfRootFactory _propertiesOfRootFactory;
 
 
-        [HttpGet]
-        [Route("CalculateRoot2And3")]
         public GameSquareExample CalculateRoot2And3() 
         {
             Question question = _calculateRoot2And3Factory.GetQuestion();
             return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 10 };
         }
 
-        [HttpGet]
-        [Route("PropertiesOfRoot")]
         public GameSquareExample PropertiesOfRoot()
         {
             Question question = _propertiesOfRootFactory.GetQuestion();
             return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
         }
 
-        [HttpGet]
-        [Route("ActionsWithRoot")]
         public GameSquareExample ActionsWithRoot()
         {
             Question question = _propertiesOfRootFactory.GetQuestion();

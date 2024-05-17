@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Monopoly_Unity_Game_Server.Model;
+﻿using Monopoly_Unity_Game_Server.Model;
 
-namespace Monopoly_Unity_Game_Server.Controllers
+namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
 {
-    [Route("OralCount/")]
-    public class OralCountController : Controller
+    public class OralCountThemeQuestionsGenerator
     {
-        public OralCountController(SingleActionQuestionFactory singleActionQuestionFactory, DoubleActionQuestionFactory doubleActionQuestionFactory)
+        public OralCountThemeQuestionsGenerator()
         {
-            _singleActionQuestionFactory = singleActionQuestionFactory;
-            _doubleActionQuestionFactory = doubleActionQuestionFactory;
+            Random random = new Random();
+            _singleActionQuestionFactory = new SingleActionQuestionFactory(random);
+            _doubleActionQuestionFactory = new DoubleActionQuestionFactory(random);
         }
 
 
@@ -17,16 +16,12 @@ namespace Monopoly_Unity_Game_Server.Controllers
         private DoubleActionQuestionFactory _doubleActionQuestionFactory;
 
 
-        [HttpGet]
-        [Route("ExampleWithSingleAction")]
         public GameSquareExample GenerateExampleWithSingleAction()
         {
             Question question = _singleActionQuestionFactory.GetQuestion();
             return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 10 };
         }
 
-        [HttpGet]
-        [Route("ExampleWithDoubleAction")]
         public GameSquareExample GenerateExampleWithDoubleAction()
         {
             Question question = _doubleActionQuestionFactory.GetQuestion();

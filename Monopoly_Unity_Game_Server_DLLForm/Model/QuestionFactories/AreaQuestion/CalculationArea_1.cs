@@ -1,5 +1,7 @@
 ﻿using Monopoly_Unity_Game_Server.Model.AreaQuestion;
 using Monopoly_Unity_Game_Server.Model.QuestionFactories.AreaQuestion.FiguresAreas;
+using System;
+using System.Collections.Generic;
 
 namespace Monopoly_Unity_Game_Server.Model
 {
@@ -29,7 +31,7 @@ namespace Monopoly_Unity_Game_Server.Model
             IFigureAreaQuestion figureArea = _PossibleFigures[_random.Next(0, _PossibleFigures.Count)];
             figureArea.GenerateFigure();
             question.QuestionText = figureArea.QuestionText;
-            question.Answers = [figureArea.FigureArea.ToString()];
+            question.Answers = new string[] { figureArea.FigureArea.ToString() };
 
             return question;
         }

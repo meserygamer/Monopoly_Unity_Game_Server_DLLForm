@@ -1,8 +1,11 @@
-﻿namespace Monopoly_Unity_Game_Server;
-
-public abstract class Example
+﻿namespace Monopoly_Unity_Game_Server
 {
-    public abstract string ExampleInString();
+    public abstract class Example
+    {
+        public abstract string ExampleInString();
 
-    public abstract string GetExampleResult();
+        public abstract string GetExampleResult();
+    }
 }
+
+

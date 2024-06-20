@@ -1,5 +1,6 @@
 ﻿using Monopoly_Unity_Game_Server.Model;
 using Monopoly_Unity_Game_Server.Model.QuestionFactories.DegreeQuestion;
+using System;
 
 namespace Monopoly_Unity_Game_Server.ThemesQuestionsGenerators
 {
@@ -28,13 +29,13 @@ namespace Monopoly_Unity_Game_Server.ThemesQuestionsGenerators
         public GameSquareExample CalculateDegreeProperties()
         {
             Question question = _propertiesOfDegreesFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 15 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
         }
 
         public GameSquareExample CalculateDegreeWith0andNegativeExponentProperties()
         {
             Question question = _propertiesOfDegreesWith0AndNegativeFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 15 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
         }
     }
 }

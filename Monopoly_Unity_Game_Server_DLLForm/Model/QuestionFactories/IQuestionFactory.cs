@@ -1,7 +1,7 @@
-﻿namespace Monopoly_Unity_Game_Server.Model;
-
-public interface IQuestionFactory
+﻿namespace Monopoly_Unity_Game_Server.Model
 {
-    public Question GetQuestion();
+    public interface IQuestionFactory
+    {
+        public Question GetQuestion();
+    }
 }
-

@@ -1,8 +1,9 @@
-﻿namespace Monopoly_Unity_Game_Server.Model;
-
-public class Question
+﻿namespace Monopoly_Unity_Game_Server.Model
 {
-    public string QuestionText { get; set; }
+    public class Question
+    {
+        public string QuestionText { get; set; }
 
-    public string[] Answers { get; set; }
+        public string[] Answers { get; set; }
+    }
 }

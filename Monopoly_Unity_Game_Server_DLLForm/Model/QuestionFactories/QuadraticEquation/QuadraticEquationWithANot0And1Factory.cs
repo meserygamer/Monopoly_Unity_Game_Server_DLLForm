@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Monopoly_Unity_Game_Server.Model.QuestionFactories
 {
@@ -84,19 +86,19 @@ namespace Monopoly_Unity_Game_Server.Model.QuestionFactories
         private List<double> FindAllDividers(double number)
         {
             List<double> dividers = new List<double>();
-            List<double> possibleOst = [0, 0.25d, 0.5d, 0.75d, -0d, -0.25d, -0.5d, -0.75d];
+            List<double> possibleOst = new List<double>() { 0, 0.25d, 0.5d, 0.75d, -0d, -0.25d, -0.5d, -0.75d };
             for (int i = 1; i * i < Math.Abs(number); i++)
-                if (number % i == 0) dividers.AddRange([i, number / i]);
+                if (number % i == 0) dividers.AddRange(new double[] { i, number / i });
             for (int i = 0; i < Math.Abs(number); i++)
             {
                 if (i != 0 && possibleOst.Contains(number / i % 1d) && !dividers.Contains(i))
-                    dividers.AddRange([i, number / i]);
+                    dividers.AddRange(new double[] { i, number / i });
                 if (number % (i + 0.25d) == 0d || possibleOst.Contains(number / (i + 0.25d) % 1d))
-                    dividers.AddRange([i + 0.25d, number / (i + 0.25d)]);
+                    dividers.AddRange(new double[] { i + 0.25d, number / (i + 0.25d) });
                 if (number % (i + 0.5d) == 0d || possibleOst.Contains(number / (i + 0.5d) % 1d))
-                    dividers.AddRange([i + 0.5d, number / (i + 0.5d)]);
+                    dividers.AddRange(new double[] { i + 0.5d, number / (i + 0.5d) });
                 if (number % (i + 0.75d) == 0d || possibleOst.Contains(number / (i + 0.75d) % 1d))
-                    dividers.AddRange([i + 0.75d, number / (i + 0.75d)]);
+                    dividers.AddRange(new double[] { i + 0.75d, number / (i + 0.75d) });
             }
             return dividers;
         }
@@ -104,7 +106,7 @@ namespace Monopoly_Unity_Game_Server.Model.QuestionFactories
         private List<double> FindAllDividers(double number, double[] possibleDividers)
         {
             List<double> dividers = new List<double>();
-            List<double> possibleOst = [0, 0.25d, 0.5d, 0.75d, -0d, -0.25d, -0.5d, -0.75d];
+            List<double> possibleOst = new List<double> { 0, 0.25d, 0.5d, 0.75d, -0d, -0.25d, -0.5d, -0.75d };
             foreach (var i in possibleDividers)
                 if(number % i == 0 || possibleOst.Contains((number / i) % 1)) dividers.Add(i);
             return dividers;

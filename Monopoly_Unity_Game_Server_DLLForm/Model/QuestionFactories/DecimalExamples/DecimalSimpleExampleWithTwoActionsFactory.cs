@@ -1,4 +1,7 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DecimalExamples
+﻿using System;
+using System.Collections.Generic;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DecimalExamples
 {
     public class DecimalSimpleExampleWithTwoActionsFactory : IQuestionFactory
     {
@@ -24,7 +27,7 @@
         {
             List<int> dividers = new List<int>();
             for (int i = 1; i * i <= number; i++)
-                if (number % i == 0) dividers.AddRange([i, number / i]);
+                if (number % i == 0) dividers.AddRange(new List<int>() { i, number / i });
             return dividers;
         }
 
@@ -90,7 +93,7 @@
             finalExample =
                         new ExampleWithTwoArguments(firstPartExample, new SimpleNumberAsExample((double)GenerateDecimal(10000, 2)), (ActionType)_random.Next(0, 2));
 
-            question.Answers = [finalExample.GetExampleResult()];
+            question.Answers = new string[] { finalExample.GetExampleResult() };
             question.QuestionText = finalExample.ExampleInString();
 
             return question;

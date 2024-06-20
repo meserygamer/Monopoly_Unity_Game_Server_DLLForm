@@ -1,4 +1,6 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions
 {
@@ -17,7 +19,7 @@ namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions
         {
             List<int> dividers = new List<int>();
             for (int i = 1; i * i < number; i++)
-                if (number % i == 0) dividers.AddRange([i, number / i]);
+                if (number % i == 0) dividers.AddRange(new int[] { i, number / i });
             return dividers;
         }
 
@@ -93,7 +95,7 @@ namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions
             double numeratorResult = (secondPartAction == ActionType.Addition) ? (double)(firstPartNumeratorResult + secondPartNumerator) : (double)(firstPartNumeratorResult - secondPartNumerator);
             UserExample finalExample = new UserExample(numeratorResult / firstPartDenominatorResult, new ExampleWithTwoArguments(firstExamplePart, SecondPart, secondPartAction).ExampleInString());
 
-            question.Answers = [finalExample.GetExampleResult()];
+            question.Answers = new string[] { finalExample.GetExampleResult() };
             question.QuestionText = finalExample.ExampleInString();
 
             return question;

@@ -1,4 +1,8 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions
 {
     public class OrdinaryFractionsWithDifferentDenominatorsFactory : IQuestionFactory
     {
@@ -15,7 +19,7 @@
         {
             List<int> dividers = new List<int>();
             for (int i = 1; i * i < number; i++)
-                if (number % i == 0) dividers.AddRange([i, number / i]);
+                if (number % i == 0) dividers.AddRange(new int[] { i, number / i });
             return dividers;
         }
 
@@ -64,13 +68,13 @@
                 case 0:
                     finalExample = new ExampleWithTwoArguments(firstExamplePart, secondExamplePart, ActionType.Addition);
 
-                    question.Answers = [((double)(firstDividerDivisible + secondDividerDivisible) / fractionSum).ToString()];
+                    question.Answers = new string[] { ((double)(firstDividerDivisible + secondDividerDivisible) / fractionSum).ToString() };
                     question.QuestionText = finalExample.ExampleInString();
                     break;
                 case 1:
                     finalExample = new ExampleWithTwoArguments(firstExamplePart, secondExamplePart, ActionType.Subtraction);
 
-                    question.Answers = [((double)(firstDividerDivisible - secondDividerDivisible) / fractionSum).ToString()];
+                    question.Answers = new string[] { ((double)(firstDividerDivisible - secondDividerDivisible) / fractionSum).ToString() };
                     question.QuestionText = finalExample.ExampleInString();
                     break;
             }

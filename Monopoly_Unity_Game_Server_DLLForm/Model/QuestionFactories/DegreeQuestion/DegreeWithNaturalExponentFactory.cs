@@ -1,4 +1,6 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DegreeQuestion
+﻿using System;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DegreeQuestion
 {
     public class DegreeWithNaturalExponentFactory : IQuestionFactory
     {
@@ -20,7 +22,7 @@
             Example finalExample = new ExampleWithTwoArguments(new SimpleNumberAsExample(degreeBase), GetExponent(degreeBase), ActionType.Exponentiation);
 
             question.QuestionText = finalExample.ExampleInString();
-            question.Answers = [finalExample.GetExampleResult()];
+            question.Answers = new string[] { finalExample.GetExampleResult() };
 
             return question;
         }

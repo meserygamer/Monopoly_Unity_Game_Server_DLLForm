@@ -1,4 +1,6 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DecimalExamples
+﻿using System;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DecimalExamples
 {
     public class DecimalSimpleExampleOfAddOrSubFactory : IQuestionFactory
     {
@@ -24,7 +26,7 @@
             ExampleWithTwoArguments example =
                 new ExampleWithTwoArguments(new SimpleNumberAsExample((double)firstNumber), new SimpleNumberAsExample((double) secondNumber), (ActionType)_random.Next(0, 2));
 
-            question.Answers = [example.GetExampleResult()];
+            question.Answers = new string[] { example.GetExampleResult() };
             question.QuestionText = example.ExampleInString();
 
             return question;

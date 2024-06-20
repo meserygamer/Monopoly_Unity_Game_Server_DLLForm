@@ -1,4 +1,7 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions
+﻿using System;
+using System.Collections.Generic;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions
 {
     public class OrdinaryFractionsWithSameDenominatorsFactory : IQuestionFactory
     {
@@ -15,7 +18,7 @@
         {
             List<int> divioners = new List<int>();
             for (int i = 1; i * i < number; i++)
-                if (number % i == 0) divioners.AddRange([i, number / i]);
+                if (number % i == 0) divioners.AddRange(new int[]{ i, number / i});
             return divioners;
         }
 
@@ -60,7 +63,7 @@
                     break;
             }
 
-            question.Answers = [finalPart!.GetExampleResult()];
+            question.Answers = new string[] { finalPart!.GetExampleResult() };
             question.QuestionText = finalPart.ExampleInString();
 
             return question;

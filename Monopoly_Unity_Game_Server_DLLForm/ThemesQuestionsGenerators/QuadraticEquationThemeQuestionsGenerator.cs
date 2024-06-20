@@ -1,5 +1,6 @@
 ﻿using Monopoly_Unity_Game_Server.Model;
 using Monopoly_Unity_Game_Server.Model.QuestionFactories;
+using System;
 
 namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
 {
@@ -22,19 +23,19 @@ namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
         public GameSquareExample GenerateQuadraticEquationWithA1Question()
         {
             Question question = _quadraticEquationWithA1QuestionFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 30 };
         }
 
         public GameSquareExample QuadraticEquationWithB0_orC0Question()
         {
             Question question = _quadraticEquationWithB0_C0Factory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 30 };
         }
 
         public GameSquareExample QuadraticEquationWithANot0And1Question()
         {
             Question question = _quadraticEquationWithANot0And1Factory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 30 };
         }
     }
 }

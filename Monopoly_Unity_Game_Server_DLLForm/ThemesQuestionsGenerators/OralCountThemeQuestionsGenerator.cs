@@ -1,4 +1,5 @@
 ﻿using Monopoly_Unity_Game_Server.Model;
+using System;
 
 namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
 {
@@ -19,13 +20,13 @@ namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
         public GameSquareExample GenerateExampleWithSingleAction()
         {
             Question question = _singleActionQuestionFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 10 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 14 };
         }
 
         public GameSquareExample GenerateExampleWithDoubleAction()
         {
             Question question = _doubleActionQuestionFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 18 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 22 };
         }
     }
 }

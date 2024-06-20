@@ -1,4 +1,8 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.FigureCharacteristics
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.FigureCharacteristics
 {
     public class TriangleSquareRectangleCharacteristicsFactory : IQuestionFactory
     {
@@ -28,7 +32,7 @@
         {
             List<int> dividers = new List<int>();
             for (int i = 1; i * i < number; i++)
-                if (number % i == 0) dividers.AddRange([i, number / i]);
+                if (number % i == 0) dividers.AddRange(new int[] { i, number / i });
             return dividers;
         }
 
@@ -36,7 +40,7 @@
         {
             List<double> dividers = new List<double>();
             for (int i = 1; i * i < number; i++)
-                if (number % i == 0 || acceptableBalance.Contains((number / i) % 1d)) dividers.AddRange([i, number / i]);
+                if (number % i == 0 || acceptableBalance.Contains((number / i) % 1d)) dividers.AddRange(new double[] { i, number / i });
             return dividers;
         }
 
@@ -63,7 +67,7 @@
             int triangleBase = possibleBases[_random.Next(0, possibleBases.Count)];
             Question triangleQuestion = new Question();
             triangleQuestion.QuestionText = $"Найдите высоту треугольника, если площадь = {triangleArea} , а основание =  {triangleBase}";
-            triangleQuestion.Answers = [((double)triangleArea * 2d / (double)triangleBase).ToString()];
+            triangleQuestion.Answers = new string[] { ((double)triangleArea * 2d / (double)triangleBase).ToString() };
             return triangleQuestion;
         }
 
@@ -74,7 +78,7 @@
             int triangleHeight = possibleHeights[_random.Next(0, possibleHeights.Count)];
             Question triangleQuestion = new Question();
             triangleQuestion.QuestionText = $"Найдите основание треугольника, если площадь = {triangleArea} , а высота =  {triangleHeight}";
-            triangleQuestion.Answers = [((double)triangleArea * 2d / (double)triangleHeight).ToString()];
+            triangleQuestion.Answers = new string[] { ((double)triangleArea * 2d / (double)triangleHeight).ToString() };
             return triangleQuestion;
         }
 
@@ -84,7 +88,7 @@
             double squareArea = Math.Pow(squareSide, 2);
             Question triangleQuestion = new Question();
             triangleQuestion.QuestionText = $"Найдите сторону квадрата, если площадь = {squareArea}";
-            triangleQuestion.Answers = [squareSide.ToString()];
+            triangleQuestion.Answers = new string[] { squareSide.ToString() };
             return triangleQuestion;
         }
 
@@ -94,18 +98,18 @@
             double squareArea = Math.Pow(squareDiagonal, 2) / 2;
             Question triangleQuestion = new Question();
             triangleQuestion.QuestionText = $"Найдите диагональ квадрата, если площадь = {squareArea}";
-            triangleQuestion.Answers = [squareDiagonal.ToString()];
+            triangleQuestion.Answers = new string[] { squareDiagonal.ToString() };
             return triangleQuestion;
         }
 
         private Question GetRectangleSideQuestion() 
         {
             double rectangleArea = _random.Next(1, 100);
-            List<double> possibleASideLenght = FindAllDividers(rectangleArea, [0.25, 0.5, 0.75]);
+            List<double> possibleASideLenght = FindAllDividers(rectangleArea, new double[] { 0.25, 0.5, 0.75 });
             double rectangleASideLenght = possibleASideLenght[_random.Next(0, possibleASideLenght.Count)];
             Question triangleQuestion = new Question();
             triangleQuestion.QuestionText = $"Найдите сторону b прямоугольника, если площадь = {rectangleArea}, а сторона a = {rectangleASideLenght}";
-            triangleQuestion.Answers = [(rectangleArea / rectangleASideLenght).ToString()];
+            triangleQuestion.Answers = new string[] { (rectangleArea / rectangleASideLenght).ToString() };
             return triangleQuestion;
         }
 
@@ -130,7 +134,7 @@
 
             Question triangleQuestion = new Question();
             triangleQuestion.QuestionText = $"Найдите диагональ прямоугольника, если сторона a = {Math.Pow(rectangleASide, 1d / 2d)}, а сторона b = {Math.Pow(rectangleBSide, 1d / 2d)}";
-            triangleQuestion.Answers = [(rectangleASide + rectangleBSide).ToString()];
+            triangleQuestion.Answers = new string[] { (rectangleASide + rectangleBSide).ToString() };
             return triangleQuestion;
 
         }

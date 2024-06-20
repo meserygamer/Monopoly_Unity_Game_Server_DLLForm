@@ -1,4 +1,6 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories
+﻿using System;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories
 {
     public class QuadraticEquationWithA1QuestionFactory : IQuestionFactory
     {
@@ -8,7 +10,7 @@
         }
 
 
-        private readonly double[] POSSIBLE_DISCRIMINANT_VALUES = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100];
+        private readonly double[] POSSIBLE_DISCRIMINANT_VALUES = new double[] { 0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 };
 
 
         private Random _random;

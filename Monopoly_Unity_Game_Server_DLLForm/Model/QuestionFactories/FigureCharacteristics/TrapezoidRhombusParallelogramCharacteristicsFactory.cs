@@ -1,4 +1,7 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.FigureCharacteristics
+﻿using System;
+using System.Collections.Generic;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.FigureCharacteristics
 {
     public class TrapezoidRhombusParallelogramCharacteristicsFactory : IQuestionFactory
     {
@@ -30,7 +33,7 @@
         {
             List<int> dividers = new List<int>();
             for (int i = 1; i * i <= number; i++)
-                if (number % i == 0) dividers.AddRange([i, number / i]);
+                if (number % i == 0) dividers.AddRange(new int[] { i, number / i });
             return dividers;
         }
 
@@ -43,7 +46,7 @@
             int bBase = baseSum - aBase;
             Question trapezoidQuestion = new Question();
             trapezoidQuestion.QuestionText = $"Найдите высоту трапеции, если площадь = {trapezoidArea} , основание a = {aBase}, а основание b = {bBase}";
-            trapezoidQuestion.Answers = [((double)trapezoidArea * 2 / (aBase + bBase)).ToString()];
+            trapezoidQuestion.Answers = new string[] { ((double)trapezoidArea * 2 / (aBase + bBase)).ToString() };
             return trapezoidQuestion;
         }
 
@@ -54,7 +57,7 @@
             int height = possibleHeight[_random.Next(0, possibleHeight.Count)];
             Question trapezoidQuestion = new Question();
             trapezoidQuestion.QuestionText = $"Найдите среднюю линию трапеции, если площадь = {trapezoidArea} , а высота = {height}";
-            trapezoidQuestion.Answers = [((double)trapezoidArea / height).ToString()];
+            trapezoidQuestion.Answers = new string[] { ((double)trapezoidArea / height).ToString() };
             return trapezoidQuestion;
         }
 
@@ -66,7 +69,7 @@
 
             Question rhombusQuestion = new Question();
             rhombusQuestion.QuestionText = $"Найдите диагональ a ромба , если площадь = {rhombusArea} , а диагональ b = {rhombusBDiagonal}";
-            rhombusQuestion.Answers = [(rhombusADiagonal).ToString()];
+            rhombusQuestion.Answers = new string[] { (rhombusADiagonal).ToString() };
             return rhombusQuestion;
         }
 
@@ -77,7 +80,7 @@
             int height = possibleHeight[_random.Next(0, possibleHeight.Count)];
             Question rhombusQuestion = new Question();
             rhombusQuestion.QuestionText = $"Найдите сторону ромба, если площадь = {rhombusArea} , а высота = {height}";
-            rhombusQuestion.Answers = [((double)rhombusArea / height).ToString()];
+            rhombusQuestion.Answers = new string[] { ((double)rhombusArea / height).ToString() };
             return rhombusQuestion;
         }
 
@@ -88,7 +91,7 @@
             int parallelogramBase = possibleBase[_random.Next(0, possibleBase.Count)];
             Question rhombusQuestion = new Question();
             rhombusQuestion.QuestionText = $"Найдите высоту параллелограмма, если площадь = {parallelogramArea}, а сторона к которой проведена высота = {parallelogramBase}";
-            rhombusQuestion.Answers = [((double)parallelogramArea / parallelogramBase).ToString()];
+            rhombusQuestion.Answers = new string[] { ((double)parallelogramArea / parallelogramBase).ToString() };
             return rhombusQuestion;
         }
 
@@ -116,7 +119,7 @@
 
             Question triangleQuestion = new Question();
             triangleQuestion.QuestionText = $"Найдите сторону а параллелограмма, если сторона b = {baseB}{_degreesAndSin[degree]}, угол между сторонами a и b = {degree}, а площадь = {parallelogramArea}";
-            triangleQuestion.Answers = [(parallelogramArea / multiplicator / baseB).ToString()];
+            triangleQuestion.Answers = new string[] { (parallelogramArea / multiplicator / baseB).ToString() };
             return triangleQuestion;
 
         }

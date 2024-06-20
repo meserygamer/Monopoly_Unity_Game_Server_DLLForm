@@ -1,58 +1,64 @@
 ﻿using Monopoly_Unity_Game_Server.Model;
+using System.Collections.Generic;
+using System;
 
-namespace Monopoly_Unity_Game_Server;
-
-/// <summary>
-/// Генератор примеров вида x (+|-|*|/) y
-/// </summary>
-public class SingleActionQuestionFactory : IQuestionFactory
+namespace Monopoly_Unity_Game_Server
 {
-    public SingleActionQuestionFactory(Random random)
+    /// <summary>
+    /// Генератор примеров вида x (+|-|*|/) y
+    /// </summary>
+    public class SingleActionQuestionFactory : IQuestionFactory
     {
-        _random = random;
-    }
-
-
-    private Random _random;
-
-
-    public Question GetQuestion()
-    {
-        Example example = GetExample();
-        return new Question() { QuestionText = example.ExampleInString(), Answers = new string[] {example.GetExampleResult()} };
-    }
-
-    public Example GetExample()
-    {
-        ActionType exampleActionType = (ActionType)_random.Next(0, 4);
-        int firstNumberInNumberForm = _random.Next(10, 501);
-        SimpleNumberAsExample firstNumber  = new SimpleNumberAsExample(firstNumberInNumberForm);
-
-        SimpleNumberAsExample secondNumber;
-        if (exampleActionType == ActionType.Addition || exampleActionType == ActionType.Subtraction)                        //Если числа складываются или вычитаются, то второе число 2 или 3 значное, иначе 1 значное
+        public SingleActionQuestionFactory(Random random)
         {
-            secondNumber = new SimpleNumberAsExample(_random.Next(10, 501));
+            _random = random;
         }
-        else
+
+
+        private Random _random;
+
+
+        public Question GetQuestion()
         {
-            if(exampleActionType == ActionType.Division)
+            Example example = GetExample();
+            return new Question() { QuestionText = example.ExampleInString(), Answers = new string[] { example.GetExampleResult() } };
+        }
+
+        public Example GetExample()
+        {
+            ActionType exampleActionType = (ActionType)_random.Next(0, 4);
+            int firstNumberInNumberForm = _random.Next(10, 501);
+            SimpleNumberAsExample firstNumber = new SimpleNumberAsExample(firstNumberInNumberForm);
+
+            SimpleNumberAsExample secondNumber;
+            if (exampleActionType == ActionType.Addition || exampleActionType == ActionType.Subtraction)                        //Если числа складываются или вычитаются, то второе число 2 или 3 значное, иначе 1 значное
             {
-                List<int> possibleSecondNumber = FindAllDivisioners(firstNumberInNumberForm);
-                secondNumber = new SimpleNumberAsExample(possibleSecondNumber[_random.Next(0, possibleSecondNumber.Count)]);
+                secondNumber = new SimpleNumberAsExample(_random.Next(10, 501));
             }
             else
             {
-                secondNumber = new SimpleNumberAsExample(_random.Next(1, 6));
+                if (exampleActionType == ActionType.Division)
+                {
+                    List<int> possibleSecondNumber = FindAllDivisioners(firstNumberInNumberForm);
+                    secondNumber = new SimpleNumberAsExample(possibleSecondNumber[_random.Next(0, possibleSecondNumber.Count)]);
+                }
+                else
+                {
+                    secondNumber = new SimpleNumberAsExample(_random.Next(1, 6));
+                }
             }
+            return new ExampleWithTwoArguments(firstNumber, secondNumber, exampleActionType);
         }
-        return new ExampleWithTwoArguments(firstNumber, secondNumber, exampleActionType);
-    }
 
-    private List<int> FindAllDivisioners(int number)
-    {
-        List<int> Divioners = new List<int>();
-        for (int i = 1; i * i <= Math.Abs(number); i++)
-            if (number % i == 0) Divioners.AddRange([i, number / i]);
-        return Divioners;
+        private List<int> FindAllDivisioners(int number)
+        {
+            List<int> Divioners = new List<int>();
+            for (int i = 1; i * i <= Math.Abs(number); i++)
+                if (number % i == 0) Divioners.AddRange(new int[] { i, number / i });
+            return Divioners;
+        }
     }
 }
+
+
+

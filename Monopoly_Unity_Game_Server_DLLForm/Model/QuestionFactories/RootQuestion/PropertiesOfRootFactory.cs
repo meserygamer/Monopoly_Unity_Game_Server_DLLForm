@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.RootQuestion
 {
@@ -44,7 +47,7 @@ namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.RootQuestion
             
             Example example = _possibleProperties[_random.Next(0, _possibleProperties.Count)].Invoke();
 
-            question.Answers = [example.GetExampleResult()];
+            question.Answers = new string[] { example.GetExampleResult() };
             question.QuestionText = example.ExampleInString();
 
             return question;
@@ -54,7 +57,7 @@ namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.RootQuestion
         {
             List<int> Divioners = new List<int>();
             for (int i = 1; i * i <= Math.Abs(Number); i++)
-                if (Number % i == 0) Divioners.AddRange([i, Number / i]);
+                if (Number % i == 0) Divioners.AddRange(new int[] { i, Number / i });
             return Divioners;
         }
 

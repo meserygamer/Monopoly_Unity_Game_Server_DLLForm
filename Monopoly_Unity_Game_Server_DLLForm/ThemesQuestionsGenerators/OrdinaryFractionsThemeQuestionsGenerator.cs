@@ -1,5 +1,6 @@
 ﻿using Monopoly_Unity_Game_Server.Model;
 using Monopoly_Unity_Game_Server.Model.QuestionFactories.OrdinaryFractions;
+using System;
 
 namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
 {
@@ -28,13 +29,13 @@ namespace Monopoly_Unity_Game_Server.ControlThemesQuestionsGenerators
         public GameSquareExample CalculateOrdinaryFractionsWithDifferentDenominators()
         {
             Question question = _ordinaryFractionsWithDiffentDenominatorsFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 25 };
         }
 
         public GameSquareExample CalculateOrdinaryFractionsWithTwoActions()
         {
             Question question = _ordinaryFractionsWithTwoActionsFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 35 };
         }
 
     }

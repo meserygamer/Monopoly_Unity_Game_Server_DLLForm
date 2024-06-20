@@ -1,4 +1,8 @@
-﻿namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DegreeQuestion
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.DegreeQuestion
 {
     public class PropertiesOfDegreesWith0andNegativeFactory : IQuestionFactory
     {
@@ -48,7 +52,7 @@
             Example example = _possibleProperties[(_random.Next(0, 4) == 0)? 0 : 1].Invoke();
 
             question.QuestionText = example.ExampleInString();
-            question.Answers = [example.GetExampleResult()];
+            question.Answers = new string[] { example.GetExampleResult() };
 
             return question;
         }

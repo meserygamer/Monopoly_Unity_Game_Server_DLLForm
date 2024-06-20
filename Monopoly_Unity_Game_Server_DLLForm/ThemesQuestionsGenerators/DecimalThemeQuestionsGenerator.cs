@@ -1,5 +1,6 @@
 ﻿using Monopoly_Unity_Game_Server.Model;
 using Monopoly_Unity_Game_Server.Model.QuestionFactories.DecimalExamples;
+using System;
 
 namespace Monopoly_Unity_Game_Server.ThemesQuestionsGenerators
 {
@@ -34,7 +35,7 @@ namespace Monopoly_Unity_Game_Server.ThemesQuestionsGenerators
         public GameSquareExample DecimalSimpleExampleWithTwoActions()
         {
             Question question = _decimalSimpleExampleWithTwoActionsFactory.GetQuestion();
-            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 20 };
+            return new GameSquareExample() { Question = question, DefaultTimeForAnswerInSecond = 35 };
         }
 
     }

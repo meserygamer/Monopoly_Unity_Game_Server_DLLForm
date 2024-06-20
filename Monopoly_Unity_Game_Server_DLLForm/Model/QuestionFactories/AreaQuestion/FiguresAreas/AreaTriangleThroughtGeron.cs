@@ -1,4 +1,6 @@
 ﻿using Monopoly_Unity_Game_Server.Model.AreaQuestion;
+using System;
+using System.Collections.Generic;
 
 namespace Monopoly_Unity_Game_Server.Model.QuestionFactories.AreaQuestion.FiguresAreas
 {
